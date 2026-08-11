@@ -1,0 +1,183 @@
+/* ESTILO RETRO / WEB 1.0 (INSPIRADO EM EMPTYGOD) */
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000; /* Fundo preto de segurança */
+    color: #d0d0d0;
+    font-family: "Courier New", Courier, monospace, sans-serif;
+    text-align: center;
+}
+
+/* --- VÍDEO FIXO EM TELA CHEIA (SEM CORTAR) --- */
+#video-fundo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    z-index: 0;
+    pointer-events: none;
+}
+/* --- CONTAINER CENTRAL TRANSPARENTE --- */
+.lobby-container {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 30px 20px;
+    
+    /* 0.75 = 75% opacidade preta (deixa o vídeo aparecer no fundo) */
+    background-color: rgba(5, 5, 5, 0.75); 
+    
+    border: 1px solid #333333;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.95);
+    
+    position: relative;
+    z-index: 1;
+}
+
+/* Títulos e textos */
+.glitch-title {
+    color: #00ff66;
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    text-shadow: 0 0 8px rgba(0, 255, 102, 0.5);
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #888888;
+    margin-top: 0;
+}
+
+.divider {
+    color: #00ff66;
+    font-size: 12px;
+    margin: 25px 0;
+    opacity: 0.7;
+}
+
+.intro-text p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+.small-note {
+    font-size: 12px;
+    color: #777777;
+    font-style: italic;
+}
+
+/* Links do Menu */
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item-label {
+    font-size: 12px;
+    color: #aaaaaa;
+    margin-bottom: 6px;
+}
+
+.pixel-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #00ff66;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.pixel-link img {
+    margin-bottom: 4px;
+    transition: transform 0.2s;
+    filter: drop-shadow(0 0 2px #00ff66);
+}
+
+.icon-box {
+    font-size: 28px;
+    margin-bottom: 4px;
+    filter: drop-shadow(0 0 3px #00ff66);
+    transition: transform 0.2s;
+}
+
+.pixel-link:hover img,
+.pixel-link:hover .icon-box {
+    transform: scale(1.15) rotate(-3deg);
+}
+
+.pixel-link:hover span {
+    color: #ffffff;
+    text-shadow: 0 0 8px #00ff66;
+    text-decoration: underline;
+}
+
+/* Rodapé */
+.site-button-sec {
+    font-size: 12px;
+    color: #888888;
+    margin-top: 15px;
+}
+
+.badge-button {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: rgba(17, 17, 17, 0.8);
+    border: 1px dashed #00ff66;
+    color: #00ff66;
+    font-size: 11px;
+    margin-top: 8px;
+}
+
+footer {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #888888;
+    border-top: 1px solid #222222;
+    padding-top: 15px;
+}
+
+footer a {
+    color: #00ff66;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-note {
+    font-size: 11px;
+    color: #666666;
+}
