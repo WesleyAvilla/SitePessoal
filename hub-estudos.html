@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>~ KNOWLEDGE_HUB // BIBLIOTECA DE ESTUDOS ~</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos adicionais específicos para o layout de biblioteca/grid */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .category-card {
+            border: 1px dashed #00ff66;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .category-title {
+            color: #00ff66;
+            font-size: 14px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .study-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .study-list li {
+            margin-bottom: 8px;
+        }
+
+        .study-link {
+            color: #d0d0d0;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .study-link:hover {
+            color: #00ff66;
+            text-shadow: 0 0 5px #00ff66;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #888888;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .back-btn:hover {
+            color: #00ff66;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Mantém o mesmo vídeo de fundo do site principal -->
+    <video autoplay loop muted playsinline id="video-fundo">
+        <source src="seu-video.mp4" type="video/mp4">
+    </video>
+
+    <div class="lobby-container" style="max-width: 800px;">
+
+        <!-- Botão para voltar ao Lobby principal -->
+        <div style="text-align: left;">
+            <a href="index.html" class="back-btn">← [ VOLTAR AO LOBBY ]</a>
+        </div>
+
+        <div class="header-gif">
+            <h1 class="glitch-title">★ KNOWLEDGE_DATABASE ★</h1>
+            <p class="subtitle">[ Central de Estudos & Repositório de Links ]</p>
+        </div>
+
+        <div class="divider">✦ ✦ ✦ ----------------------------------- ✦ ✦ ✦</div>
+
+        <!-- GRID DE CATEGORIAS -->
+        <div class="hub-grid">
+
+            <!-- CATEGORIA 1: PROGRAMAÇÃO -->
+            <div class="category-card">
+                <h2 class="category-title">📂 Programação</h2>
+                <ul class="study-list">
+                    <li>
+                        <a href="https://wesleyavilla.github.io/site_c/" target="_blank" class="study-link">
+                            > Hub de Estudos em C
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://golang.org/doc/" target="_blank" class="study-link">
+                            > Linguagem Go (Documentação)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#link-futuro" class="study-link">
+                            > Algoritmos & Estruturas
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CATEGORIA 2: EXATAS / FÍSICA -->
+            <div class="category-card">
+                <h2 class="category-title">📐 Exatas & Física</h2>
+                <ul class="study-list">
+                    <li>
+                        <a href="#link-calculo" class="study-link">
+                            > Cálculo 1 (Anotações & Exercícios)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#link-fisica" class="study-link">
+                            > Física Clássica / Dinâmica
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#link-algebra" class="study-link">
+                            > Álgebra Linear
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CATEGORIA 3: FERRAMENTAS & DOCUMENTAÇÃO -->
+            <div class="category-card">
+                <h2 class="category-title">🛠️ Ferramentas</h2>
+                <ul class="study-list">
+                    <li>
+                        <a href="https://github.com" target="_blank" class="study-link">
+                            > Repositórios do GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#link-cheat-sheets" class="study-link">
+                            > Cheat Sheets / Guias Rápidos
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CATEGORIA 4: LEITURAS / LIVROS -->
+            <div class="category-card">
+                <h2 class="category-title">📚 Leituras & Livros</h2>
+                <ul class="study-list">
+                    <li>
+                        <a href="#link-livro1" class="study-link">
+                            > Livros PDF Recomendados
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#link-artigos" class="study-link">
+                            > Artigos Técnicos
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="divider">✦ ✦ ✦ ----------------------------------- ✦ ✦ ✦</div>
+
+        <footer>
+            <p class="footer-note">Biblioteca mantida e atualizada frequentemente.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
