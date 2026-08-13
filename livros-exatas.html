@@ -3,28 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>~ EXACT_SCIENCES_LIBRARY // LIVROS & PDFS ~</title>
+    <title>~ KNOWLEDGE_REPOSITORY // BIBLIOTECA DE LIVROS ~</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Estilos específicos para o layout da biblioteca de livros */
+        .back-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+
+        .back-btn {
+            color: #888888;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            color: #00ff66;
+        }
+
+        /* BARRA DE PESQUISA */
+        .search-container {
+            margin: 20px 0 15px 0;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 14px;
+            outline: none;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .search-input::placeholder {
+            color: #555555;
+        }
+
+        /* SELEÇÃO DE CATEGORIAS (ABAS) */
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #444444;
+            color: #888888;
+            padding: 10px 15px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .tab-btn:hover {
+            border-color: #00ff66;
+            color: #00ff66;
+        }
+
+        .tab-btn.active {
+            border-color: #00ff66;
+            color: #000000;
+            background-color: #00ff66;
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+        }
+
+        /* GRID E CARDS DE LIVROS */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         .hub-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
-            margin-top: 20px;
             text-align: left;
         }
 
         .category-card {
             border: 1px dashed #00ff66;
             padding: 15px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
         }
 
         .category-title {
             color: #00ff66;
             font-size: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             border-bottom: 1px solid #333;
             padding-bottom: 5px;
             text-transform: uppercase;
@@ -36,8 +120,8 @@
             margin: 0;
         }
 
-        .study-list li {
-            margin-bottom: 10px;
+        .book-item {
+            margin-bottom: 12px;
         }
 
         .study-link {
@@ -61,31 +145,23 @@
             font-style: italic;
         }
 
-        .back-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 12px;
-        }
-
-        .back-btn {
-            color: #888888;
-            text-decoration: none;
-        }
-
-        .back-btn:hover {
-            color: #00ff66;
+        .no-results {
+            display: none;
+            color: #ff3333;
+            font-size: 13px;
+            margin: 20px 0;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <!-- Mantém o mesmo vídeo de fundo -->
+    <!-- Mantém o vídeo de fundo -->
     <video autoplay loop muted playsinline id="video-fundo">
-        <source src="background.mp4" type="video/mp4">
+        <source src="seu-video.mp4" type="video/mp4">
     </video>
 
-    <div class="lobby-container" style="max-width: 800px;">
+    <div class="lobby-container" style="max-width: 850px;">
 
         <!-- Navegação de volta -->
         <div class="back-nav">
@@ -94,112 +170,262 @@
         </div>
 
         <div class="header-gif">
-            <h1 class="glitch-title">★ EXACT_SCIENCES_BOOKS ★</h1>
-            <p class="subtitle">[ Repositório de Livros & PDFs de Exatas ]</p>
+            <h1 class="glitch-title">★ DIGITAL_LIBRARY ★</h1>
+            <p class="subtitle">[ Repositório de Livros, PDFs & Obras Literárias ]</p>
+        </div>
+
+        <!-- BARRA DE PESQUISA -->
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchInput" 
+                class="search-input" 
+                placeholder="🔍 Digite o título do livro ou autor para buscar..."
+                onkeyup="filtrarLivros()"
+            >
+        </div>
+
+        <!-- ABAS DE SELEÇÃO: DIDÁTICOS / LITERATURA -->
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="trocarAba('didaticos', this)">📖 Livros Didáticos</button>
+            <button class="tab-btn" onclick="trocarAba('literatura', this)">📚 Literatura & Ficção</button>
         </div>
 
         <div class="divider">✦ ✦ ✦ ----------------------------------- ✦ ✦ ✦</div>
 
-        <!-- GRID DE CATEGORIAS DE LIVROS -->
-        <div class="hub-grid">
+        <div id="noResultsMsg" class="no-results">
+            [ ! ] Nenhum livro encontrado com esse termo na aba selecionada.
+        </div>
 
-            <!-- CATEGORIA 1: FÍSICA -->
-            <div class="category-card">
-                <h2 class="category-title">⚛️ Física</h2>
-                <ul class="study-list">
-                    <li>
-                        <a href="https://seu-link-do-pdf.com" target="_blank" class="study-link">
-                            > Física I: Mecânica (Sears & Zemansky)
-                        </a>
-                        <span class="book-author">Young & Freedman</span>
-                    </li>
-                    <li>
-                        <a href="#link-pdf" target="_blank" class="study-link">
-                            > Fundamentos de Física - Vol 1, 2, 3 e 4
-                        </a>
-                        <span class="book-author">Halliday & Resnick</span>
-                    </li>
-                    <li>
-                        <a href="#link-pdf" target="_blank" class="study-link">
-                            > Lições de Física (Feynman Lectures)
-                        </a>
-                        <span class="book-author">Richard Feynman</span>
-                    </li>
-                </ul>
+        <!-- ==================== ABA 1: DIDÁTICOS ==================== -->
+        <div id="didaticos" class="tab-content active">
+            <div class="hub-grid">
+
+                <!-- CATEGORIA: FÍSICA -->
+                <div class="category-card">
+                    <h2 class="category-title">⚛️ Física</h2>
+                    <ul class="study-list">
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Física I: Mecânica
+                            </a>
+                            <span class="book-author">Young & Freedman (Sears & Zemansky)</span>
+                        </li>
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Fundamentos de Física (Vol. 1 a 4)
+                            </a>
+                            <span class="book-author">Halliday & Resnick</span>
+                        </li>
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Lições de Física
+                            </a>
+                            <span class="book-author">Richard Feynman</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CATEGORIA: CÁLCULO & MATEMÁTICA -->
+                <div class="category-card">
+                    <h2 class="category-title">∫ Cálculo & Matemática</h2>
+                    <ul class="study-list">
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Cálculo - Vol. 1 e 2
+                            </a>
+                            <span class="book-author">James Stewart</span>
+                        </li>
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Um Curso de Cálculo - Vol. 1
+                            </a>
+                            <span class="book-author">Hamilton Luiz Guidorizzi</span>
+                        </li>
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Álgebra Linear e Suas Aplicações
+                            </a>
+                            <span class="book-author">David C. Lay</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CATEGORIA: COMPUTAÇÃO -->
+                <div class="category-card">
+                    <h2 class="category-title">💻 Computação & Programação</h2>
+                    <ul class="study-list">
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Algoritmos: Teoria e Prática
+                            </a>
+                            <span class="book-author">Thomas H. Cormen</span>
+                        </li>
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Código Limpo (Clean Code)
+                            </a>
+                            <span class="book-author">Robert C. Martin</span>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
+        </div>
 
-            <!-- CATEGORIA 2: CÁLCULO & ANÁLISE -->
-            <div class="category-card">
-                <h2 class="category-title">∫ Cálculo Differential e Integral</h2>
-                <ul class="study-list">
-                    <li>
-                        <a href="https://tsxvpsbr.dyndns.org/arquivos/UFFS/Calculo%20A%20-%20Diva%20Mar%C3%ADlia%20Flemming%20%26%20Mirian%20Buss%20Gon%C3%A7alves%20-%206%C2%AA%20Edi%C3%A7%C3%A3o.pdf" target="_blank" class="study-link">
-                            > Cálculo Vol. 1 
-                        </a>
-                        <span class="book-author">Diva Marília</span>
-                    </li>
-                    <li>
-                        <a href="#link-pdf" target="_blank" class="study-link">
-                            > Um Curso de Cálculo - Vol. 1
-                        </a>
-                        <span class="book-author">Hamilton Luiz Guidorizzi</span>
-                    </li>
-                    <li>
-                        <a href="#link-pdf" target="_blank" class="study-link">
-                            > Cálculo com Geometria Analítica
-                        </a>
-                        <span class="book-author">George F. Simmons</span>
-                    </li>
-                </ul>
+        <!-- ==================== ABA 2: LITERATURA ==================== -->
+        <div id="literatura" class="tab-content">
+            <div class="hub-grid">
+
+                <!-- CATEGORIA: CLÁSSICOS & NACIONAL -->
+                <div class="category-card">
+                    <h2 class="category-title">🏛️ Clássicos & Literatura Nacional</h2>
+                    <ul class="study-list">
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Dom Casmurro
+                            </a>
+                            <span class="book-author">Machado de Assis</span>
+                        </li>
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Grande Sertão: Veredas
+                            </a>
+                            <span class="book-author">João Guimarães Rosa</span>
+                        </li>
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Vidas Secas
+                            </a>
+                            <span class="book-author">Graciliano Ramos</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CATEGORIA: FICÇÃO CIENTÍFICA & DYSTOPIA -->
+                <div class="category-card">
+                    <h2 class="category-title">🚀 Ficção Científica & Distopia</h2>
+                    <ul class="study-list">
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Neuromancer
+                            </a>
+                            <span class="book-author">William Gibson</span>
+                        </li>
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > 1984
+                            </a>
+                            <span class="book-author">George Orwell</span>
+                        </li>
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Duna (Dune)
+                            </a>
+                            <span class="book-author">Frank Herbert</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CATEGORIA: FILOSOFIA & ENSAIOS -->
+                <div class="category-card">
+                    <h2 class="category-title">📜 Filosofia & Ensaios</h2>
+                    <ul class="study-list">
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > A República
+                            </a>
+                            <span class="book-author">Platão</span>
+                        </li>
+                        <li class="book-item">
+                            <a href="seu-link-aqui.pdf" target="_blank" class="study-link">
+                                > Assim Falou Zaratustra
+                            </a>
+                            <span class="book-author">Friedrich Nietzsche</span>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
-
-            <!-- CATEGORIA 3: ÁLGEBRA LINEAR & GEOMETRIA -->
-            <div class="category-card">
-                <h2 class="category-title">📐 Álgebra Linear & Geometria</h2>
-                <ul class="study-list">
-                    <li>
-                        <a href="#link-pdf" target="_blank" class="study-link">
-                            > Álgebra Linear e Suas Aplicações
-                        </a>
-                        <span class="book-author">David C. Lay</span>
-                    </li>
-                    <li>
-                        <a href="#link-pdf" target="_blank" class="study-link">
-                            > Vetores e Geometria Analítica
-                        </a>
-                        <span class="book-author">Paulo Winterle</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- CATEGORIA 4: EQUAÇÕES DIFERENCIAIS -->
-            <div class="category-card">
-                <h2 class="category-title">📈 Equações Diferenciais</h2>
-                <ul class="study-list">
-                    <li>
-                        <a href="#link-pdf" target="_blank" class="study-link">
-                            > Equações Diferenciais Elementares
-                        </a>
-                        <span class="book-author">Boyce & DiPrima</span>
-                    </li>
-                    <li>
-                        <a href="#link-pdf" target="_blank" class="study-link">
-                            > Introdução às Equações Diferenciais
-                        </a>
-                        <span class="book-author">Dennis G. Zill</span>
-                    </li>
-                </ul>
-            </div>
-
         </div>
 
         <div class="divider">✦ ✦ ✦ ----------------------------------- ✦ ✦ ✦</div>
 
         <footer>
-            <p class="footer-note">Acervo de exatas em constante atualização.</p>
+            <p class="footer-note">Biblioteca mantida e organizada continuamente.</p>
         </footer>
 
     </div>
 
+    <!-- SCRIPT DA TROCA DE ABAS E BARRA DE PESQUISA -->
+   <script>
+    // Função para alternar entre Didáticos e Literatura
+    function trocarAba(abaId, elementoBotao) {
+        const abas = document.querySelectorAll('.tab-content');
+        abas.forEach(aba => aba.classList.remove('active'));
+
+        const botoes = document.querySelectorAll('.tab-btn');
+        botoes.forEach(btn => btn.classList.remove('active'));
+
+        document.getElementById(abaId).classList.add('active');
+        elementoBotao.classList.add('active');
+
+        // Refiltra a busca ao trocar de aba
+        filtrarLivros();
+    }
+
+    // Função auxiliar que remove acentos e deixa tudo em minúsculo
+    function removerAcentos(texto) {
+        return texto
+            .normalize("NFD") // Decompõe os caracteres (ex: 'í' vira 'i' + acento)
+            .replace(/[\u0300-\u036f]/g, "") // Remove os acentos soltos
+            .toLowerCase(); // Converte tudo para minúsculo
+    }
+
+    // Função para filtrar os livros em tempo real
+    function filtrarLivros() {
+        const termoDigitado = document.getElementById('searchInput').value;
+        // Limpa acentos do termo digitado pelo usuário
+        const termo = removerAcentos(termoDigitado).trim();
+
+        const abaAtiva = document.querySelector('.tab-content.active');
+        const cards = abaAtiva.querySelectorAll('.category-card');
+        const mensagemSemResultado = document.getElementById('noResultsMsg');
+
+        let encontrouAlgum = false;
+
+        cards.forEach(card => {
+            const livros = card.querySelectorAll('.book-item');
+            let visiveisNoCard = 0;
+
+            livros.forEach(livro => {
+                // Limpa acentos do título/autor do livro antes de comparar
+                const textoLivro = removerAcentos(livro.textContent);
+
+                if (textoLivro.includes(termo)) {
+                    livro.style.display = 'block';
+                    visiveisNoCard++;
+                    encontrouAlgum = true;
+                } else {
+                    livro.style.display = 'none';
+                }
+            });
+
+            // Oculta/exibe o bloco da categoria se não houver resultados
+            if (visiveisNoCard > 0) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Exibe mensagem de erro se nada for encontrado
+        if (!encontrouAlgum && termo !== '') {
+            mensagemSemResultado.style.display = 'block';
+        } else {
+            mensagemSemResultado.style.display = 'none';
+        }
+    }
+</script>
 </body>
 </html>
