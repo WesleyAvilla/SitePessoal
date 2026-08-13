@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>~ EXACT_SCIENCES_LIBRARY // LIVROS & PDFS ~</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para o layout da biblioteca de livros */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .category-card {
+            border: 1px dashed #00ff66;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .category-title {
+            color: #00ff66;
+            font-size: 14px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .study-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .study-list li {
+            margin-bottom: 10px;
+        }
+
+        .study-link {
+            color: #d0d0d0;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+            display: block;
+        }
+
+        .study-link:hover {
+            color: #00ff66;
+            text-shadow: 0 0 5px #00ff66;
+        }
+
+        .book-author {
+            font-size: 11px;
+            color: #777777;
+            display: block;
+            margin-left: 12px;
+            font-style: italic;
+        }
+
+        .back-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+
+        .back-btn {
+            color: #888888;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            color: #00ff66;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Mantém o mesmo vídeo de fundo -->
+    <video autoplay loop muted playsinline id="video-fundo">
+        <source src="seu-video.mp4" type="video/mp4">
+    </video>
+
+    <div class="lobby-container" style="max-width: 800px;">
+
+        <!-- Navegação de volta -->
+        <div class="back-nav">
+            <a href="hub-estudos.html" class="back-btn">← [ VOLTAR AO HUB DE ESTUDOS ]</a>
+            <a href="index.html" class="back-btn">[ VOLTAR AO LOBBY ] →</a>
+        </div>
+
+        <div class="header-gif">
+            <h1 class="glitch-title">★ EXACT_SCIENCES_BOOKS ★</h1>
+            <p class="subtitle">[ Repositório de Livros & PDFs de Exatas ]</p>
+        </div>
+
+        <div class="divider">✦ ✦ ✦ ----------------------------------- ✦ ✦ ✦</div>
+
+        <!-- GRID DE CATEGORIAS DE LIVROS -->
+        <div class="hub-grid">
+
+            <!-- CATEGORIA 1: FÍSICA -->
+            <div class="category-card">
+                <h2 class="category-title">⚛️ Física</h2>
+                <ul class="study-list">
+                    <li>
+                        <a href="https://seu-link-do-pdf.com" target="_blank" class="study-link">
+                            > Física I: Mecânica (Sears & Zemansky)
+                        </a>
+                        <span class="book-author">Young & Freedman</span>
+                    </li>
+                    <li>
+                        <a href="#link-pdf" target="_blank" class="study-link">
+                            > Fundamentos de Física - Vol 1, 2, 3 e 4
+                        </a>
+                        <span class="book-author">Halliday & Resnick</span>
+                    </li>
+                    <li>
+                        <a href="#link-pdf" target="_blank" class="study-link">
+                            > Lições de Física (Feynman Lectures)
+                        </a>
+                        <span class="book-author">Richard Feynman</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CATEGORIA 2: CÁLCULO & ANÁLISE -->
+            <div class="category-card">
+                <h2 class="category-title">∫ Cálculo Differential e Integral</h2>
+                <ul class="study-list">
+                    <li>
+                        <a href="#link-pdf" target="_blank" class="study-link">
+                            > Cálculo Vol. 1 e Vol. 2
+                        </a>
+                        <span class="book-author">James Stewart</span>
+                    </li>
+                    <li>
+                        <a href="#link-pdf" target="_blank" class="study-link">
+                            > Um Curso de Cálculo - Vol. 1
+                        </a>
+                        <span class="book-author">Hamilton Luiz Guidorizzi</span>
+                    </li>
+                    <li>
+                        <a href="#link-pdf" target="_blank" class="study-link">
+                            > Cálculo com Geometria Analítica
+                        </a>
+                        <span class="book-author">George F. Simmons</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CATEGORIA 3: ÁLGEBRA LINEAR & GEOMETRIA -->
+            <div class="category-card">
+                <h2 class="category-title">📐 Álgebra Linear & Geometria</h2>
+                <ul class="study-list">
+                    <li>
+                        <a href="#link-pdf" target="_blank" class="study-link">
+                            > Álgebra Linear e Suas Aplicações
+                        </a>
+                        <span class="book-author">David C. Lay</span>
+                    </li>
+                    <li>
+                        <a href="#link-pdf" target="_blank" class="study-link">
+                            > Vetores e Geometria Analítica
+                        </a>
+                        <span class="book-author">Paulo Winterle</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CATEGORIA 4: EQUAÇÕES DIFERENCIAIS -->
+            <div class="category-card">
+                <h2 class="category-title">📈 Equações Diferenciais</h2>
+                <ul class="study-list">
+                    <li>
+                        <a href="#link-pdf" target="_blank" class="study-link">
+                            > Equações Diferenciais Elementares
+                        </a>
+                        <span class="book-author">Boyce & DiPrima</span>
+                    </li>
+                    <li>
+                        <a href="#link-pdf" target="_blank" class="study-link">
+                            > Introdução às Equações Diferenciais
+                        </a>
+                        <span class="book-author">Dennis G. Zill</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="divider">✦ ✦ ✦ ----------------------------------- ✦ ✦ ✦</div>
+
+        <footer>
+            <p class="footer-note">Acervo de exatas em constante atualização.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
