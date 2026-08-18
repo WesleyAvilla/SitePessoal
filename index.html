@@ -108,6 +108,26 @@
         </footer>
 
     </div>
+       <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        // COLE O SEU LINK DO WEBHOOK DO DISCORD AQUI:
+        const webhookURL = "https://discord.com/api/webhooks/1539313274104053830/NUtDAz7WAA8bmd2aE2t8e8lYuZkgUeEhjIxWBsYZx1c50f-rvEr30OYUpk8_hZsmb55f";
+
+        // Coleta dados básicos do visitante
+        const dados = {
+            content: "🚨 **Novo acesso ao site!**\n" +
+                     "📄 **Página:** " + window.location.pathname + "\n" +
+                     "⏰ **Horário:** " + new Date().toLocaleString("pt-BR")
+        };
+
+        // Envia a notificação via Fetch API
+        fetch(webhookURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        }).catch(err => console.log("Erro ao enviar notificação:", err));
+    });
+</script>
 
 </body>
 </html>
